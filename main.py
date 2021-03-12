@@ -1,3 +1,5 @@
+#!python
+
 import base64
 import os
 from cryptography.fernet import Fernet
@@ -24,8 +26,8 @@ def main():
   if operation not in ['1','2']:
     exit()
   # Handle Files
-  ifile = input('Input File> ')
-  ofile = input('Ouptput File> ')
+  ifile = input('Input File> ').strip('"')
+  ofile = input('Ouptput File> ').strip('"')
   try:
     ifile = open(ifile, 'rb')
     ofile = open(ofile, 'wb')
