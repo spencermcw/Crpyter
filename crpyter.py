@@ -46,4 +46,4 @@ def execute(password, salt, inText, op):
         return token.decode('utf-8')
     except Exception as e:
         # print('Exception:', type(e))
-        return 'Invalid Credentials'
+        return None

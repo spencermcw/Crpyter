@@ -6,11 +6,11 @@ layout = [
         sg.Column([
             [
                 sg.Text('Password'),
-                sg.Input('', enable_events=True, key='-PASSWORD-'),
+                sg.Input('', enable_events=True, key='-PASSWORD-', password_char='*'),
             ],
             [
                 sg.Text('Salt'),
-                sg.Input('', enable_events=True, key='-SALT-'),
+                sg.Input('', enable_events=True, key='-SALT-', password_char='*'),
             ],
         ]),
     ],
@@ -38,9 +38,6 @@ while True:
     
     if event == sg.WIN_CLOSED:
         break
-
-    # print('Event:', event)
-    # print('Values:', values)
 
     if event in ['-ENCODE-', '-DECODE-']:
         output = crpyter.execute(
