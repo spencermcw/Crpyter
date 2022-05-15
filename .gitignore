@@ -3,3 +3,5 @@ __pycache__
 *.spec
 dist
 .vscode
+env
+brute.py

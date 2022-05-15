@@ -2,8 +2,9 @@
 A command line interface tool for encrypting and decrypting files.
 
 ### Requirements
-- Python 3.9
-- virtualenv
+- Python 3.9+
+- venv
+- tkinter
 
 ### CLI Usage
 1. Create & Activate Virtual Environment
