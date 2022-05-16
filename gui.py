@@ -4,20 +4,18 @@ import PySimpleGUI as sg
 layout = [
     [
         sg.Column([
-            [
-                sg.Text('Password'),
-                sg.Input('', enable_events=True, key='-PASSWORD-', password_char='*'),
-            ],
-            [
-                sg.Text('Salt'),
-                sg.Input('', enable_events=True, key='-SALT-', password_char='*'),
-            ],
+            [sg.Text('Password', size=(8,1), justification='r')],
+            [sg.Text('Salt', size=(8,1), justification='r')],
+        ]),
+        sg.Column([
+            [sg.Input('', enable_events=True, key='-PASSWORD-', password_char='*', size=(50,1))],
+            [sg.Input('', enable_events=True, key='-SALT-', password_char='*', size=(50,1))],
         ]),
     ],
     [
         sg.Column([
             [sg.Text('Input')],
-            [sg.Multiline(size=(45, 25), key='-INPUT-')],
+            [sg.Multiline(size=(30, 15), key='-INPUT-')],
         ]),
         sg.Column([
             [sg.Button('ENCODE', key='-ENCODE-', size=(10,1))],
@@ -26,7 +24,7 @@ layout = [
         ]),
         sg.Column([
             [sg.Text('Output')],
-            [sg.Multiline(size=(45, 25), key='-OUTPUT-')],
+            [sg.Multiline(size=(30, 15), key='-OUTPUT-')],
         ]),
     ],
 ]
@@ -40,6 +38,7 @@ while True:
         break
 
     if event in ['-ENCODE-', '-DECODE-']:
+        window['-OUTPUT-'].update('')
         output = crpyter.execute(
             password=values['-PASSWORD-'],
             salt=values['-SALT-'],
@@ -49,7 +48,6 @@ while True:
                 '-DECODE-': crpyter.Operation.DECODE
             }[event])
         )
-        # print(output)
         window['-OUTPUT-'].update(output)
 
     elif event == '-COPY-OUTPUT-':
