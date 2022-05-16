@@ -40,7 +40,7 @@ def get_operation():
   operation = input('Desired Operation> ')
   if operation not in ['1','2']:
     print('Invalid Operation')
-    exit()
+    return None
   return operation
 
 def get_files():
@@ -55,17 +55,21 @@ def get_files():
   return (ifile, ofile)
 
 def do_work(ifile, ofile, operation, f):
-  # Encrypt
-  if operation == '1':
-    token = f.encrypt(ifile.read())
-  # Decrypt
-  else:
-    token = f.decrypt(ifile.read())
-  # Write
-  ofile.write(token)
-  # Close Files
-  ifile.close()
-  ofile.close()
+  try:
+    # Encrypt
+    if operation == '1':
+      token = f.encrypt(ifile.read())
+    # Decrypt
+    else:
+      token = f.decrypt(ifile.read())
+    # Write
+    print(token)
+    ofile.write(token)
+    # Close Files
+    ifile.close()
+    ofile.close()
+  except Exception:
+    print('Invalid Credentials')
 
 def main():
   # Prompts
@@ -76,6 +80,8 @@ def main():
   salt = get_salt()
   key = pass_to_key(password, salt)
   f = Fernet(key)
+  ifile = None
+  ofile = None
   # Handle Operation
   operation = get_operation()
   ifile, ofile = get_files()
