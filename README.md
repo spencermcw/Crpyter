@@ -12,13 +12,14 @@ A command line interface tool for encrypting and decrypting files.
 3. EXE may be built with `pyinstaller`
 
 ~~~
-$ virtualenv --no-site-packages --distribute env
+$ pip install virtualenv
+$ virtualenv env
 $ source env/Scripts/activate
 $ pip install -r requirements.txt
-$ python main.py
+$ python <main|gui>.py
 ~~~
 
 EXE Building
 ~~~
-$ pyinstaller --onefile main.py
+$ pyinstaller --onefile gui.py
 ~~~
